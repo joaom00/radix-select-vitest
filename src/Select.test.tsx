@@ -1,6 +1,5 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import * as Select from "@radix-ui/react-select";
 import App from "./App";
 
 class MockPointerEvent extends Event {
@@ -33,12 +32,14 @@ it("should pass", async () => {
   await user.click(trigger);
 
   expect(
-    screen.getByRole("combobox", { name: 'Food', expanded: true, hidden: true })
+    screen.getByRole("combobox", { name: "Food", expanded: true, hidden: true })
   ).toBeInTheDocument();
   expect(screen.getByRole("option", { name: "Apple" })).toBeInTheDocument();
   expect(screen.getByRole("option", { name: "Banana" })).toBeInTheDocument();
 
   await user.click(screen.getByRole("option", { name: "Apple" }));
 
-  expect(screen.getByRole("combobox", { name: "Food", expanded: false }));
+  expect(
+    screen.getByRole("combobox", { name: "Food", expanded: false })
+  ).toBeInTheDocument();
 });
