@@ -1,6 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import * as HoverCard from "@radix-ui/react-hover-card";
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as HoverCard from '@radix-ui/react-hover-card';
 
 global.ResizeObserver = class ResizeObserver {
   cb: any;
@@ -16,7 +16,7 @@ global.ResizeObserver = class ResizeObserver {
 
 const DEFAULT_OPEN_DELAY_HOVER_CARD = 700;
 
-it("should pass", async () => {
+it('should pass', async () => {
   const user = userEvent.setup();
   render(
     <HoverCard.Root>
@@ -30,13 +30,10 @@ it("should pass", async () => {
     </HoverCard.Root>
   );
 
-  expect(screen.getByRole("link")).toBeInTheDocument();
+  expect(screen.getByRole('link')).toBeInTheDocument();
 
-  await user.hover(screen.getByRole("link"));
-  await waitFor(
-    () => 
-      expect(screen.getByText("Awesome link content")).toBeInTheDocument()
-    ,
-    { timeout: DEFAULT_OPEN_DELAY_HOVER_CARD }
-  );
+  await user.hover(screen.getByRole('link'));
+  await waitFor(() => expect(screen.getByText('Awesome link content')).toBeInTheDocument(), {
+    timeout: DEFAULT_OPEN_DELAY_HOVER_CARD,
+  });
 });
